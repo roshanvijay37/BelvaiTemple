@@ -48,15 +48,33 @@ window.addEventListener('scroll', () => {
 });
 
 // Add this to your existing script.js
-document.querySelectorAll('.gallery-item img').forEach(image => {
+let currentImageIndex = 0;
+const galleryImages = document.querySelectorAll('.gallery-item img');
+
+galleryImages.forEach((image, index) => {
     image.addEventListener('click', e => {
+        currentImageIndex = index;
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         lightboxImg.src = e.target.src;
+        lightboxImg.alt = e.target.alt;
         lightbox.classList.add('active');
     });
 });
 
+document.querySelector('.prev-btn').addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = galleryImages[currentImageIndex].src;
+    lightboxImg.alt = galleryImages[currentImageIndex].alt;
+});
+
+document.querySelector('.next-btn').addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = galleryImages[currentImageIndex].src;
+    lightboxImg.alt = galleryImages[currentImageIndex].alt;
+});
 document.querySelector('.close-lightbox').addEventListener('click', closeLightbox);
 document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) {
