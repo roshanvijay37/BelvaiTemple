@@ -60,10 +60,59 @@ body {
     }
 
     .menu-toggle {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        z-index: 100;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(45deg, #800000, #A52A2A);
+        border: none;
+        border-radius: 50%;
         display: none;
-        color: white;
-        font-size: 24px;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
         cursor: pointer;
+    }
+
+    .menu-toggle .bar {
+        width: 20px;
+        height: 2px;
+        background: white;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .menu-toggle .bar::before,
+    .menu-toggle .bar::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: white;
+        transition: all 0.3s ease;
+    }
+
+    .menu-toggle .bar::before {
+        transform: translateY(-6px);
+    }
+
+    .menu-toggle .bar::after {
+        transform: translateY(6px);
+    }
+
+    .menu-toggle.active .bar {
+        background: transparent;
+    }
+
+    .menu-toggle.active .bar::before {
+        transform: rotate(45deg);
+    }
+
+    .menu-toggle.active .bar::after {
+        transform: rotate(-45deg);
     }
 
     @media (max-width: 768px) {
@@ -76,7 +125,7 @@ body {
         }
       
         .menu-toggle {
-            display: block;
+            display: flex;
         }
       
         nav.active a {
@@ -85,9 +134,7 @@ body {
             text-align: center;
             padding: 15px;
         }
-    }
-
-    main {
+    }    main {
         padding: 20px;
     }
 
@@ -441,4 +488,68 @@ section h3 {
 .camera-icon {
     margin-right: 10px;
     font-size: 1.2em;
+}
+
+/* Add these new styles */
+.site-wrap {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.offcanvas-toggle {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    background: #800000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.offcanvas_menu {
+    position: fixed;
+    top: 0;
+    right: -240px;
+    width: 240px;
+    height: 100vh;
+    background: linear-gradient(45deg, #800000, #A52A2A);
+    padding: 20px;
+    z-index: 99;
+    transition: 0.3s all ease;
+}
+
+.offcanvas_menu.active {
+    right: 0;
+}
+
+.offcanvas_menu ul {
+    padding: 0;
+    margin-top: 50px;
+}
+
+.offcanvas_menu ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.offcanvas_menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.offcanvas_menu ul li a:hover {
+    padding-left: 10px;
+    color: #ffd700;
 }

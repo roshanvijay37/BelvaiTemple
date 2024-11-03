@@ -1,21 +1,20 @@
-// Add this to your existing script.js
-document.querySelector('.menu-toggle').addEventListener('click', () => {
-    document.querySelector('nav').classList.toggle('active');
-});
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
 
-// Close mobile menu when clicking a link
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('nav').classList.remove('active');
-        const targetId = link.getAttribute('href').substring(1);
-        document.getElementById(targetId).scrollIntoView({
-            behavior: 'smooth'
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Close menu when clicking menu items
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+            menuToggle.classList.remove('active');
         });
     });
-});
-// Add this to highlight important dates
-document.addEventListener('DOMContentLoaded', function() {
+});document.addEventListener('DOMContentLoaded', function() {
     const dates = document.querySelectorAll('p:contains("28-10-2024")');
     dates.forEach(date => {
         const text = date.innerHTML;
