@@ -35,41 +35,69 @@ body {
   header p {
       font-size: 1.2em;
   }
+    nav {
+        background: linear-gradient(45deg, #800000, #A52A2A);
+        padding: 15px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
 
-  nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 215, 0, 0.9);
-  }
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
 
-  nav a {
-      margin: 0 15px;
-      color: var(--secondary-color);
-      text-decoration: none;
-      font-weight: bold;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-  }
+    nav a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
 
-  nav a:hover {
-      border-bottom: 2px solid var(--secondary-color);
-      background: rgba(255,255,255,0.1);
-  }
+    .menu-toggle {
+        display: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
 
-  main {
-      padding: 20px;
-  }
+    @media (max-width: 768px) {
+        nav {
+            justify-content: space-between;
+        }
+      
+        nav a {
+            display: none;
+        }
+      
+        .menu-toggle {
+            display: block;
+        }
+      
+        nav.active a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+        }
+    }
 
-  section {
-      margin: 20px 0;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background-color: #fff;
-  }
+    main {
+        padding: 20px;
+    }
 
+    section {
+        margin: 20px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+    }
   h2 {
       color: var(--primary-color);
       margin-bottom: 10px;

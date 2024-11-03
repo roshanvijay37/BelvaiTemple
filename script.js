@@ -1,14 +1,19 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+// Add this to your existing script.js
+document.querySelector('.menu-toggle').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('active');
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
+        document.querySelector('nav').classList.remove('active');
+        const targetId = link.getAttribute('href').substring(1);
         document.getElementById(targetId).scrollIntoView({
             behavior: 'smooth'
         });
     });
 });
-
 // Add this to highlight important dates
 document.addEventListener('DOMContentLoaded', function() {
     const dates = document.querySelectorAll('p:contains("28-10-2024")');
