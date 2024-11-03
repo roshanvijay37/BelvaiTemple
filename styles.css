@@ -553,3 +553,19 @@ section h3 {
     padding-left: 10px;
     color: #ffd700;
 }
+
+.developer-credit {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.developer-credit a {
+    color: #444;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.developer-credit a:hover {
+    color: #000;
+}
