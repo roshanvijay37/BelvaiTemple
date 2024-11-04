@@ -47,17 +47,48 @@ window.addEventListener('scroll', () => {
     document.querySelector('.progress-bar').style.width = scrolled + '%';
 });
 
-// Add this to your existing script.js
-document.querySelectorAll('.gallery-item img').forEach(image => {
-    image.addEventListener('click', e => {
+let currentImageIndex = 0;
+const galleryImages = document.querySelectorAll('.gallery-item img');
+
+// Open lightbox with clicked image
+galleryImages.forEach((image, index) => {
+    image.addEventListener('click', () => {
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        lightboxImg.src = e.target.src;
+        currentImageIndex = index;
+        lightboxImg.src = image.src;
         lightbox.classList.add('active');
     });
 });
 
-document.querySelector('.close-lightbox').addEventListener('click', closeLightbox);
+// Previous button click handler
+document.querySelector('.prev-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    document.getElementById('lightbox-img').src = galleryImages[currentImageIndex].src;
+});
+
+// Next button click handler
+document.querySelector('.next-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    document.getElementById('lightbox-img').src = galleryImages[currentImageIndex].src;
+});
+
+// Add keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    
+    if (e.key === 'ArrowLeft') {
+        currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+        document.getElementById('lightbox-img').src = galleryImages[currentImageIndex].src;
+    }
+    
+    if (e.key === 'ArrowRight') {
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+        document.getElementById('lightbox-img').src = galleryImages[currentImageIndex].src;
+    }
+});document.querySelector('.close-lightbox').addEventListener('click', closeLightbox);
 document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) {
         closeLightbox();
